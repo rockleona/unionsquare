@@ -4,6 +4,8 @@ services:
 
   unionsquare:
     image: unionsquare
+    volumes:
+      - .:/app
     build:
       context: .
       dockerfile: dev.Dockerfile
@@ -13,7 +15,10 @@ services:
   mongo:
     image: mongo
     restart: always
+    volumes:
+      - ./lib/db/script/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
     environment:
+      MONGO_INITDB_DATABASE: us_database
       MONGO_INITDB_ROOT_USERNAME: us_admin
       MONGO_INITDB_ROOT_PASSWORD: example123
 
