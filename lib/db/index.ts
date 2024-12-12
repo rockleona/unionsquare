@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import {connect, disconnect } from 'mongoose';
 import process from 'process';
 
 class MongooseClient {
@@ -10,7 +10,7 @@ class MongooseClient {
 
     public async connect(): Promise<void> {
         try {
-            await mongoose.connect(this.uri);
+            await connect(this.uri);
             console.log('Successfully connected to MongoDB');
         } catch (error) {
             console.error('Error connecting to MongoDB:', error);
@@ -20,7 +20,7 @@ class MongooseClient {
 
     public async disconnect(): Promise<void> {
         try {
-            await mongoose.disconnect();
+            await disconnect();
             console.log('Successfully disconnected from MongoDB');
         } catch (error) {
             console.error('Error disconnecting from MongoDB:', error);

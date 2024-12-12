@@ -13,30 +13,28 @@ interface UserInterface {
     }[];
 };
 
-
 class UserDBClient extends MongooseClient {
-    private schema: Schema;
+    private schema = new Schema<UserInterface>({
+        username: { type: String, required: true },
+        password: { type: String, required: true },
+        role: { type: String, required: true },
+        reviews: [{
+            review: { type: String, required: true },
+            reviewer: { type: String, required: true },
+            rating: { type: String, required: true },
+            feedback: { type: String, required: false },
+        }],
+    });
+
     private model: Model<UserInterface>;
 
     constructor() {
         super()
-        this.checkCollection()
-    }
-
-    private async checkCollection() {
-        this.schema = new Schema<UserInterface>({
-            username: { type: String, required: true },
-            password: { type: String, required: true },
-            role: { type: String, required: true },
-            reviews: [{
-                review: { type: String, required: true },
-                reviewer: { type: String, required: true },
-                rating: { type: String, required: true },
-                feedback: { type: String, required: false },
-            }],
-        });
-
-        this.model = model<UserInterface>('User') || model<UserInterface>('User', this.schema);
+        try {
+            this.model = model<UserInterface>('User', this.schema);
+        }catch (error) {
+            this.model = model<UserInterface>('User');
+        }
     }
 
     // private model = model<UserInterface>('User', this.schema);
