@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Field, Fieldset, Input, Label, Legend, Select, Button, Description } from '@headlessui/react'
 import clsx from 'clsx'
@@ -11,9 +11,9 @@ export default function SignupPage() {
 
     return (
         <div className='absolute w-1/2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+            <h2 className='text-2xl text-center mb-5 font-bold'>Ready to launch UnionSquare?</h2>
             <form action={action}>
                 <Fieldset className="space-y-6 rounded-xl bg-white/5 p-6 sm:p-10">
-                    <Legend className="text-base/7 font-semibold text-white">Welcome to UnionSquare!</Legend>
                     <Legend className="text-base/10 font-light text-white">Sign up with the info below:</Legend>
                     <Field>
                         <Label htmlFor="username" className="text-sm/6 font-medium text-white">Username:</Label>

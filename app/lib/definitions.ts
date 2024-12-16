@@ -26,4 +26,5 @@ export type FormState =
   export type SessionPayload = {
     username: string
     role: 'employee' | 'employer'
+    expiresAt: Date
   }
