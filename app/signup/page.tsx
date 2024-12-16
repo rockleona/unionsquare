@@ -14,7 +14,7 @@ export default function SignupPage() {
             <form action={action}>
                 <Fieldset className="space-y-6 rounded-xl bg-white/5 p-6 sm:p-10">
                     <Legend className="text-base/7 font-semibold text-white">Welcome to UnionSquare!</Legend>
-                    <Legend className="text-base/10 font-light text-white">Fill out the form below:</Legend>
+                    <Legend className="text-base/10 font-light text-white">Sign up with the info below:</Legend>
                     <Field>
                         <Label htmlFor="username" className="text-sm/6 font-medium text-white">Username:</Label>
                         <Input
@@ -60,6 +60,7 @@ export default function SignupPage() {
                         {state?.errors?.password && <Description className="text-sm/6 text-red-500">{state.errors.password}</Description>}
                     </Field>
                     <Button className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white" type="submit">Sign Up</Button>
+                    <Button className="rounded-md text-sm/6 font-semibold text-white data-[hover]:underline ml-5" as="a" href='/login'>I already have an account.</Button>
                 </Fieldset>
             </form>
         </div>

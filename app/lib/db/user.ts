@@ -30,10 +30,12 @@ class UserDBClient extends MongooseClient {
 
     constructor() {
         super()
+
+        // To try to avoid the "OverwriteModelError" error
         try {
-            this.model = model<UserInterface>('User', this.schema);
-        }catch (error) {
             this.model = model<UserInterface>('User');
+        }catch (error) {
+            this.model = model<UserInterface>('User', this.schema);
         }
     }
 
@@ -42,7 +44,6 @@ class UserDBClient extends MongooseClient {
     public async create(user: UserInterface): Promise<UserInterface> {
         try {
             const newUser: HydratedDocument<UserInterface> = new this.model(user);
-            console.log(newUser);
             return await newUser.save();
         } catch (error) {
             console.error('Error creating user:', error);

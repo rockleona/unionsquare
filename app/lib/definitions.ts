@@ -22,3 +22,8 @@ export type FormState =
       message?: string
     }
   | undefined
+
+  export type SessionPayload = {
+    username: string
+    role: 'employee' | 'employer'
+  }
