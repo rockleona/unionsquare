@@ -41,7 +41,7 @@ export default function SignupPage() {
                             )}
                         >
                             <option value='employee' >Employee</option>
-                            <option value='employer' >Employer</option>
+                            <option value='admin' >Admin</option>
                         </Select>
                     </Field>
                     <Field>

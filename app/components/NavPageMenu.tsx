@@ -20,7 +20,7 @@ export default async function NavPageMenu() {
             >
                 <NextLink className="px-4 py-2" href="/">Dashboard</NextLink>
                 <NextLink className="px-4 py-2" href="/performance">Performance Review</NextLink>
-                {user?.role == 'employer' ? (<NextLink className="px-4 py-2" href="/employees">Employees</NextLink>) : <></>}
+                {user?.role == 'admin' ? (<NextLink className="px-4 py-2" href="/employees">Employees</NextLink>) : <></>}
             </PopoverPanel>
         </Popover>)
     );
