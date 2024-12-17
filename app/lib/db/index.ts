@@ -9,7 +9,6 @@ class MongooseClient {
     }
 
     public async attach(): Promise<void> {
-        console.log(this.uri);
         try {
             await mongoose.connect(this.uri);
             console.log('Successfully connected to MongoDB');

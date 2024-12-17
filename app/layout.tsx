@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import NextLink from "next/link";
 import localFont from "next/font/local";
+import { Suspense } from 'react'
+
+import NavPageMenu from "@/app/components/NavPageMenu";
+import NavPageProfile from "./components/NavPageProfile";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -33,10 +36,13 @@ export default async function RootLayout({
         <div className="w-full h-20 px-5 py-3 flex flex-row place-content-between">
           <div className="flex flex-row space-x-5 items-center">
             <h1 className="text-lg font-bold">UnionSquare</h1>
-            <NextLink href="/">Dashboard</NextLink>
-            <NextLink href="/performance">Performance Review</NextLink>
-            <NextLink href="/employees">Employees</NextLink>
+            <Suspense fallback={<div>Loading...</div>}>
+              <NavPageMenu />
+            </Suspense>
           </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <NavPageProfile />
+          </Suspense>
         </div>
         {children}
       </body>
