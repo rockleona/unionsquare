@@ -8,7 +8,7 @@ interface UserInterface {
     reviews: {
         review: string;
         reviewer: string;
-        rating: string;
+        rating: number;
         feedback: string | null;
     }[];
 };
@@ -34,7 +34,7 @@ class UserDBClient extends MongooseClient {
         // To try to avoid the "OverwriteModelError" error
         try {
             this.model = model<UserInterface>('User');
-        }catch (error) {
+        } catch (error) {
             this.model = model<UserInterface>('User', this.schema);
         }
     }
@@ -62,9 +62,28 @@ class UserDBClient extends MongooseClient {
 
     public async update(username: string, user: UserInterface): Promise<UserInterface | null> {
         try {
-            return await this.model.findOneAndUpdate().where('username').equals(username).update(user).exec();
+            return await this.model.findOneAndUpdate({username: username}, user);
         } catch (error) {
             console.error('Error updating user:', error);
+            throw error;
+        }
+    }
+
+    public async delete(username: string): Promise<any> {
+        try {
+            console.log('Deleting user:', username);
+            return await this.model.deleteOne({ username: username });
+        } catch (error) {
+            console.error('Error deleting user:', error);
+            throw error;
+        }
+    }
+
+    public async readAll(): Promise<UserInterface[]> {
+        try {
+            return await this.model.find().exec();
+        } catch (error) {
+            console.error('Error reading all users:', error);
             throw error;
         }
     }

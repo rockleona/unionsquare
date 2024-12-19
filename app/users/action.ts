@@ -1,3 +1,6 @@
+// import { cookies } from 'next/headers';
+import process from 'process';
+import { decrypt } from '@/app/lib/session';
 import { SignupFormSchema, FormState } from '@/app/lib/definitions'
 import bcrypt from 'bcryptjs'
 
@@ -64,6 +67,20 @@ export async function update(state: FormState, formData: FormData){
     // TODO: Implement update user
 }
 
-export async function remove(state: FormState, formData: FormData){
+export async function remove(state: FormState, username: string){
     // TODO: Implement remove user
+    // const cookieStore = await cookies();
+    // const session = cookieStore.get('session');
+
+    const response = await fetch(`${process.env.API_URL}/api/user/${username}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${session}`,
+        },
+    });
+
+    console.log(await response.json());
+
+
 }

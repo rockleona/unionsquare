@@ -107,7 +107,7 @@ export async function login(state: FormState, formData: FormData) {
 
     if (data.status === 200) {
         await createSession(username, data.role);
-        redirect('/')
+        redirect('/performance')
     } else {
         return {
             errors: {

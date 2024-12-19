@@ -7,12 +7,15 @@ export function middleware(request: NextRequest) {
   if (!session_cookie) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
-
-  // TODO: filter not admin user to /employees
+  
+  const pathname = new URL(request.url).pathname
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL('/performance', request.url))
+  }
 
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/', '/performance', '/employees']
+  matcher: ['/', '/performance', '/users']
 }

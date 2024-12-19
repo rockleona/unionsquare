@@ -18,9 +18,8 @@ export default async function NavPageMenu() {
                 anchor="bottom start"
                 className="mt-3 flex flex-col space-y-3 text-start  rounded-xl bg-white/5 text-sm/6 transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0"
             >
-                <NextLink className="px-4 py-2" href="/">Dashboard</NextLink>
                 <NextLink className="px-4 py-2" href="/performance">Performance Review</NextLink>
-                {user?.role == 'admin' ? (<NextLink className="px-4 py-2" href="/employees">Employees</NextLink>) : <></>}
+                {user?.role == 'admin' ? (<NextLink className="px-4 py-2" href="/users">User Management</NextLink>) : <></>}
             </PopoverPanel>
         </Popover>)
     );

@@ -23,6 +23,8 @@ export async function POST(request: Request) {
         return Response.json({ message: 'User login successfully', role: existing_user.role, status: 200 })
     }
 
+    await user_client.detach();
+
     return new Response(JSON.stringify({
         message: 'User not found or password is incorrect',
         status: 404,

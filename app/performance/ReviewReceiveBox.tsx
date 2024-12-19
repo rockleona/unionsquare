@@ -2,7 +2,6 @@ import { UserIcon } from "@heroicons/react/24/outline";
 import { ExclamationCircleIcon, CheckCircleIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { Button } from "@headlessui/react";
 
-
 interface ReviewBoxProps {
     reviewer: string;
     rating: number;
@@ -10,12 +9,8 @@ interface ReviewBoxProps {
     feedback: string;
 }
 
-
-export default function ReviewBox(props
-    : { _doc: ReviewBoxProps, username: string }
-) {
-
-    const { reviewer,  rating, review, feedback } = props._doc;
+export default function ReviewReceiveBox(props: { _doc: ReviewBoxProps, username: string }) {
+    const { reviewer, rating, review, feedback } = props._doc;
     const { username } = props;
 
     return (
@@ -26,14 +21,14 @@ export default function ReviewBox(props
                 <div className="flex items-center space-x-1">
                     <UserIcon className="w-5 h-5 text-white" />
                     <div className="flex flex-col items-start">
-                        <p className="text-xs">Review to:</p>
-                        <p className="font-semibold text-white">{username}</p>
+                        <p className="text-xs">Review from:</p>
+                        <p className="font-semibold text-white">{reviewer}</p>
                     </div>
                 </div>
                 {review.length > 0 ? (
                     <p className="font-semibold text-sm inline-flex text-green-500">
                         <CheckCircleIcon className="w-5 h-5 text-green-500" />
-                        Review Sent
+                        Review Received
                     </p>
                 ) : (
                     <p className="font-semibold text-sm inline-flex text-red-500">
@@ -44,7 +39,7 @@ export default function ReviewBox(props
                 {feedback.length > 0 ? (
                     <p className="font-semibold text-sm inline-flex text-green-500">
                         <CheckCircleIcon className="w-5 h-5 text-green-500" />
-                        Feedback Received
+                        Feedback Sent
                     </p>
                 ) : (
                     <p className="font-semibold text-sm inline-flex text-red-500">
