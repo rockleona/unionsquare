@@ -36,7 +36,12 @@
 ## Host the project locally
 
 ### Getting Started
+```sh
+corepack enable pnpm
+pnpm install
+```
 
+### Start the service
 ```sh
 docker network create us_network
 docker compose -f dev-docker-compose.yml build
